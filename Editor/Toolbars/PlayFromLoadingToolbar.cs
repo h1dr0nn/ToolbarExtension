@@ -11,9 +11,11 @@ public static class PlayFromLoadingToolbar
     const float TOOLBAR_BTN_HEIGHT = 18f;
     const float TOOLBAR_TOP_OFFSET = 1f;
     const float TOOLBAR_RIGHT_SPACE = 18f;
-    const string LOADING_SCENE_PATH = "Assets/_h1dr0n/Scenes/LoadingScene.unity";
+    const string LOADING_SCENE_PREF_KEY = "h1dr0n_loading_scene_path";
     const string LAST_SCENE_KEY = "h1dr0n_last_scene_path";
     const string PRESSED_KEY = "h1dr0n_pressed_toolbar_flag";
+
+    static string LoadingScenePath => EditorPrefs.GetString(LOADING_SCENE_PREF_KEY, "Assets/_h1dr0n/Scenes/LoadingScene.unity");
 
     static PlayFromLoadingToolbar()
     {
@@ -44,9 +46,9 @@ public static class PlayFromLoadingToolbar
                 return;
             }
 
-            if (!File.Exists(LOADING_SCENE_PATH))
+            if (!File.Exists(LoadingScenePath))
             {
-                Debug.LogError($"[PlayFromLoadingToolbar] Scene not found at: {LOADING_SCENE_PATH}");
+                Debug.LogError($"[PlayFromLoadingToolbar] Scene not found at: {LoadingScenePath}");
                 return;
             }
 
@@ -59,7 +61,7 @@ public static class PlayFromLoadingToolbar
 
             SessionState.SetBool(PRESSED_KEY, true);
 
-            EditorSceneManager.OpenScene(LOADING_SCENE_PATH);
+            EditorSceneManager.OpenScene(LoadingScenePath);
             EditorApplication.isPlaying = true;
         }
 

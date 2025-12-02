@@ -12,6 +12,10 @@ Based on [marijnz/unity-toolbar-extender](https://github.com/marijnz/unity-toolb
 - **Recompile Scripts**: Force Unity to recompile all scripts
 - **TimeScale Slider**: Adjust game speed in playmode
 
+## Configuration
+
+Some features require configuration. See [CONFIGURATION.md](CONFIGURATION.md) for details.
+
 ## Installation
 
 ### Via Git URL (Recommended)

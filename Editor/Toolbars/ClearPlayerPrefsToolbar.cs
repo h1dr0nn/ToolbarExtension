@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityToolbarExtender;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 [InitializeOnLoad]
 public static class ClearPlayerPrefsToolbar
@@ -14,8 +16,15 @@ public static class ClearPlayerPrefsToolbar
 
     static ClearPlayerPrefsToolbar()
     {
-        icon = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/AfterhoursFoundation/Editor/Toolbars/Icons/trash-can.png");
+        icon = LoadIcon("trash-can");
         ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
+    }
+
+    static Texture2D LoadIcon(string iconName, [CallerFilePath] string sourceFilePath = "")
+    {
+        string scriptDir = Path.GetDirectoryName(sourceFilePath);
+        string iconPath = Path.Combine(scriptDir, "Icons", $"{iconName}.png");
+        return AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath);
     }
 
     static void OnToolbarGUI()

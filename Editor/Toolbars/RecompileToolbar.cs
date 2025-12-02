@@ -1,6 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
 using UnityToolbarExtender;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 [InitializeOnLoad]
 public static class RecompileToolbar
@@ -14,9 +16,15 @@ public static class RecompileToolbar
 
     static RecompileToolbar()
     {
-        icon = AssetDatabase.LoadAssetAtPath<Texture2D>(
-            "Assets/AfterhoursFoundation/Editor/Toolbars/Icons/reset.png");
+        icon = LoadIcon("reset");
         ToolbarExtender.LeftToolbarGUI.Insert(1, OnToolbarGUI);
+    }
+
+    static Texture2D LoadIcon(string iconName, [CallerFilePath] string sourceFilePath = "")
+    {
+        string scriptDir = Path.GetDirectoryName(sourceFilePath);
+        string iconPath = Path.Combine(scriptDir, "Icons", $"{iconName}.png");
+        return AssetDatabase.LoadAssetAtPath<Texture2D>(iconPath);
     }
 
     static void OnToolbarGUI()
