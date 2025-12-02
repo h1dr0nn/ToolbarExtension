@@ -1,0 +1,16 @@
+{
+  "name": "com.h1dr0n.toolbarextension",
+  "version": "1.0.0",
+  "displayName": "Toolbar Extension",
+  "description": "Extend the Unity Toolbar with your own GUI code.",
+  "unity": "2019.3",
+  "author": {
+    "name": "h1dr0n"
+  },
+  "keywords": [
+    "unity",
+    "toolbar",
+    "editor",
+    "extension"
+  ]
+}
